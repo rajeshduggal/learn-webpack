@@ -4,6 +4,7 @@ var package = require('../package.json');
 module.exports = {
   entry: {
     app: "./src/scripts/app.js",
+    settings: "./src/scripts/settings.js",
     vendor: ['lodash']
   },
   output: {
@@ -17,7 +18,16 @@ module.exports = {
       title: 'My Awesome application',
       myPageHeader: 'Hello World',
       template: './src/index.html',
+      chunks: ['vendor','app'],
       filename: './index.html'
+    }),
+    new HtmlWebpackPlugin({
+      hash: true,
+      title: 'My Awesome application',
+      myPageHeader: 'Settings',
+      template: './src/index.html',
+      chunks: ['vendor','settings'],
+      filename: './settings.html'
     })
   ]
 }
