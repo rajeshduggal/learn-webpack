@@ -1,9 +1,13 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var package = require('../package.json');
 
 module.exports = {
-  entry: "./src/scripts/app.js",//path relative to this file
+  entry: {
+    app: "./src/scripts/app.js",
+    vendor: ['lodash']
+  },
   output: {
-      filename: "./app.bundle.js"
+    filename: "./[name].bundle.js"
   },
   watch:true,
   resolve: { extensions: [".js", ".ts"] },
