@@ -1,5 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var package = require('../package.json');
+var path = require('path');
 
 module.exports = {
   entry: {
@@ -12,6 +13,10 @@ module.exports = {
   },
   watch:true,
   resolve: { extensions: [".js", ".ts"] },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    port: 9000
+  },
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
@@ -19,7 +24,8 @@ module.exports = {
       myPageHeader: 'Hello World',
       template: './src/index.html',
       chunks: ['vendor','app'],
-      filename: './index.html'
+      path: path.join(__dirname, "../dist/"),
+      filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
       hash: true,
@@ -27,7 +33,8 @@ module.exports = {
       myPageHeader: 'Settings',
       template: './src/index.html',
       chunks: ['vendor','settings'],
-      filename: './settings.html'
+      path: path.join(__dirname, "../dist/"),
+      filename: 'settings.html'
     })
   ]
 }
